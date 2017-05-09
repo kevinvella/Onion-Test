@@ -1,0 +1,12 @@
+EFCore.Services.Interfaces/obj/
+EFCore.Services/obj/
+EFCore.Web/obj/
+TestOnion.Domain.Interfaces/obj/
+EFCore.Repo/obj/
+EFCore.Repo.Maps/obj/
+EFCore.Repo.Interfaces/obj/
+EFCore.Repo.Maps/bin/
+EFCore.Repo.Context/obj/
+EFCore.Repo.Context/bin/
+EFCore.Data.Models/obj/
+EFCore.Data.Maps/obj/
