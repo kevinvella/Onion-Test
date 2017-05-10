@@ -21,6 +21,7 @@ namespace EFCore.Repo
         public T Add(T item)
         {
             context.Entry(item).State = EntityState.Added;
+            context.SaveChanges();
             return item;
         }
 
@@ -30,6 +31,7 @@ namespace EFCore.Repo
             {
                 context.Entry(item).State = EntityState.Added;
             }
+            context.SaveChanges();
         }
 
         public IQueryable<T> GetAll()
