@@ -26,7 +26,16 @@ namespace EFCore.Web.Controllers
         {
             var result = userService.GetAll();
 
-            return Ok(result);
+            if (result.Count > 0)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest("No users where found");
+            }
+
+            
         }
 
         [HttpPost]
