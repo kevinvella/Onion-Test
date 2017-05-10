@@ -3,6 +3,7 @@ using EFCore.Repo.Interfaces;
 using EFCore.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EFCore.Services
@@ -19,7 +20,7 @@ namespace EFCore.Services
 
         public void Add(tb_User obj)
         {
-            throw new NotImplementedException();
+            userRepository.Add(obj);
         }
 
         public void Delete(tb_User obj)
@@ -29,7 +30,7 @@ namespace EFCore.Services
 
         public List<tb_User> GetAll()
         {
-            throw new NotImplementedException();
+            return userRepository.GetAll().ToList();
         }
 
         public tb_User GetSingle(string name)
