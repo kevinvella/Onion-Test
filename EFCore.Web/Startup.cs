@@ -7,6 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using EFCore.Repo.Context;
+using EFCore.Repo.Interfaces;
+using EFCore.Repo;
+using EFCore.Services.Interfaces;
+using EFCore.Services;
 
 namespace EFCore.Web
 {
@@ -29,6 +35,14 @@ namespace EFCore.Web
         {
             // Add framework services.
             services.AddMvc();
+            services.AddNodeServices();
+
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")) );
+
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
