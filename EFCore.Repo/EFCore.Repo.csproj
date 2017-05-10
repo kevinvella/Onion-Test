@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Repo.Context\EFCore.Repo.Context.csproj" />
+    <ProjectReference Include="..\EFCore.Repo.Interfaces\EFCore.Repo.Interfaces.csproj" />
+  </ItemGroup>
 
 </Project>
