@@ -10,3 +10,9 @@ EFCore.Repo.Context/obj/
 EFCore.Repo.Context/bin/
 EFCore.Data.Models/obj/
 EFCore.Data.Maps/obj/
+EFCore.Web/bin/
+EFCore.Services/bin/
+EFCore.Repo/bin/
+EFCore.Repo.Interfaces/bin/
+EFCore.Data.Models/bin/
+EFCore.Services.Interfaces/bin/
