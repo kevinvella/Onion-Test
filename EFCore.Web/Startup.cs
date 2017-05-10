@@ -13,6 +13,7 @@ using EFCore.Repo.Interfaces;
 using EFCore.Repo;
 using EFCore.Services.Interfaces;
 using EFCore.Services;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace EFCore.Web
 {
@@ -43,6 +44,11 @@ namespace EFCore.Web
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             services.AddTransient<IUserService, UserService>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Angular 4.0 Universal & ASP.NET Core advanced starter-kit web API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,24 +57,49 @@ namespace EFCore.Web
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseStaticFiles();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
+
+
+                app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS etc.), specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
+
+                app.MapWhen(x => !x.Request.Path.Value.StartsWith("/swagger"), builder =>
+                {
+                    builder.UseMvc(routes =>
+                    {
+                        routes.MapSpaFallbackRoute(
+                            name: "spa-fallback",
+                            defaults: new { controller = "Home", action = "Index" });
+                    });
+                });
             }
             else
             {
+                app.UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+
+                    routes.MapSpaFallbackRoute(
+                        name: "spa-fallback",
+                        defaults: new { controller = "Home", action = "Index" });
+                });
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }
