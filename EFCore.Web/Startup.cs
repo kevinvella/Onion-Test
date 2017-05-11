@@ -14,6 +14,7 @@ using EFCore.Repo;
 using EFCore.Services.Interfaces;
 using EFCore.Services;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace EFCore.Web
 {
