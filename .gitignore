@@ -16,3 +16,7 @@ EFCore.Repo/bin/
 EFCore.Repo.Interfaces/bin/
 EFCore.Data.Models/bin/
 EFCore.Services.Interfaces/bin/
+EFCore.Web.Client/obj/
+EFCore.Web.Client/node_modules/
+EFCore.Web.Client/src/dist/
+packages/
