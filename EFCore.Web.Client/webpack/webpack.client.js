@@ -8,7 +8,7 @@ const clientBundleOutputDir = root('./wwwroot/dist');
  */
 module.exports = {
     entry: {
-        'main-browser': root('./Client/main.browser.ts')
+        'main-browser': root('./src/main.browser.ts')
     },
     output: {
         path: root('./wwwroot/dist'),

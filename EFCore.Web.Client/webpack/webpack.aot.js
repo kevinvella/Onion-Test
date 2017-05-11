@@ -2,13 +2,13 @@
 const { AotPlugin } = require('@ngtools/webpack');
 
 const tsconfigs = {
-    client: root('./Client/tsconfig.browser.json'),
-    server: root('./Client/tsconfig.server.json')
+    client: root('./src/tsconfig.browser.json'),
+    server: root('./src/tsconfig.server.json')
 };
 
 const aotTsconfigs = {
-    client: root('./Client/tsconfig.browser.json'),
-    server: root('./Client/tsconfig.server.aot.json')
+    client: root('./src/tsconfig.browser.json'),
+    server: root('./src/tsconfig.server.aot.json')
 };
 
 /**
