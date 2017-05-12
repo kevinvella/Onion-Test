@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EFCore.Data.Models\EFCore.Data.Models.csproj" />
     <ProjectReference Include="..\EFCore.Repo.Interfaces\EFCore.Repo.Interfaces.csproj" />
     <ProjectReference Include="..\EFCore.Services.Interfaces\EFCore.Services.Interfaces.csproj" />
