@@ -15,6 +15,10 @@ using EFCore.Services.Interfaces;
 using EFCore.Services;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Swashbuckle.AspNetCore.Swagger;
+using EFCore.Services.Interfaces.Cryptography.Hashing;
+using EFCore.Services.Cryptography.Hashing;
+using EFCore.Services.Interfaces.Json;
+using EFCore.Services.Json;
 
 namespace EFCore.Web
 {
@@ -45,6 +49,10 @@ namespace EFCore.Web
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<SHA512CryptographyService>();
+            services.AddTransient<MD5CryptographyService>();
+
+            services.AddTransient<IJsonService, JsonService>();
 
             services.AddSwaggerGen(c =>
             {
@@ -63,10 +71,12 @@ namespace EFCore.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                /*
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
                 });
+                */
 
 
                 app.UseSwagger();

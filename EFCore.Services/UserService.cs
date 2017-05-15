@@ -1,6 +1,8 @@
 ﻿using EFCore.Data.Models;
 using EFCore.Repo.Interfaces;
+using EFCore.Services.Cryptography.Hashing;
 using EFCore.Services.Interfaces;
+using EFCore.Services.Interfaces.Cryptography.Hashing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,17 +37,23 @@ namespace EFCore.Services
 
         public tb_User GetSingle(string name)
         {
-            throw new NotImplementedException();
+            if (name == null || name == string.Empty)
+                throw new ArgumentNullException(nameof(name), $"{nameof(name)} is null or empty");
+
+            return userRepository.GetSingle(x => x.usr_Firstname.Contains(name) || x.usr_LastName.Contains(name));
         }
 
         public tb_User GetSingle(int pk)
         {
-            throw new NotImplementedException();
+            if (pk > 0)
+                throw new ArgumentNullException(nameof(pk), $"{nameof(pk)} is not valid");
+
+            return userRepository.GetSingle(x => x.usr_Pk == pk);
         }
 
         public tb_User GetSingle(Guid uniqueIdentifier)
         {
-            throw new NotImplementedException();
+            return userRepository.GetSingle(x => x.usr_Guid == uniqueIdentifier);
         }
 
         public void Update(tb_User obj)

@@ -1,12 +1,12 @@
-﻿using EFCore.Services.Interfaces.Cryptography;
+﻿using EFCore.Services.Interfaces.Cryptography.Hashing;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EFCore.Services.Cryptography
+namespace EFCore.Services.Cryptography.Hashing
 {
-    public class MD5CryptographyService : ICryptographyService
+    public class SHA256CryptographyService : ICryptographyService
     {
         public string Hash(string data)
         {
@@ -15,7 +15,7 @@ namespace EFCore.Services.Cryptography
 
         public string Hash(byte[] data)
         {
-            return BitConverter.ToString(MD5.Create().ComputeHash(data)).Replace("-", "");
+            return BitConverter.ToString(SHA256.Create().ComputeHash(data)).Replace("-", "");
         }
     }
 }

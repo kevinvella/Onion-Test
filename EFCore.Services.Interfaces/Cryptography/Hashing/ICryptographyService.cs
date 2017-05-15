@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EFCore.Services.Interfaces.Cryptography
+namespace EFCore.Services.Interfaces.Cryptography.Hashing
 {
     public interface ICryptographyService
     {

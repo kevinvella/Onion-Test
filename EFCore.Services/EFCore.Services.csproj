@@ -10,4 +10,12 @@
     <ProjectReference Include="..\EFCore.Services.Interfaces\EFCore.Services.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Cryptography\Encryption\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
 </Project>
