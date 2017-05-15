@@ -20,3 +20,5 @@ EFCore.Web.Client/obj/
 EFCore.Web.Client/node_modules/
 EFCore.Web.Client/src/dist/
 packages/
+EFCore.Repo.UnitOfWork/obj/
+EFCore.Repo.UnitOfWork/bin/

@@ -19,6 +19,7 @@ using EFCore.Services.Interfaces.Cryptography.Hashing;
 using EFCore.Services.Cryptography.Hashing;
 using EFCore.Services.Interfaces.Json;
 using EFCore.Services.Json;
+using EFCore.Repo.UnitOfWork;
 
 namespace EFCore.Web
 {
@@ -47,6 +48,7 @@ namespace EFCore.Web
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")) );
 
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<SHA512CryptographyService>();

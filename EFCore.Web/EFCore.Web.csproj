@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EFCore.Repo.Context\EFCore.Repo.Context.csproj" />
     <ProjectReference Include="..\EFCore.Repo.Interfaces\EFCore.Repo.Interfaces.csproj" />
+    <ProjectReference Include="..\EFCore.Repo.UnitOfWork\EFCore.Repo.UnitOfWork.csproj" />
     <ProjectReference Include="..\EFCore.Repo\EFCore.Repo.csproj" />
     <ProjectReference Include="..\EFCore.Services.Interfaces\EFCore.Services.Interfaces.csproj" />
     <ProjectReference Include="..\EFCore.Services\EFCore.Services.csproj" />

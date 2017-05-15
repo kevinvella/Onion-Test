@@ -13,21 +13,36 @@ namespace EFCore.Services
     public class UserService : IUserService
     {
         private IRepository<tb_User> userRepository;
+        private IUnitOfWork unitOfWork;
 
-        public UserService(IRepository<tb_User> _userRepo)
+        public UserService(IRepository<tb_User> _userRepo, IUnitOfWork _unitOfWork)
         {
             userRepository = _userRepo;
-
+            unitOfWork = _unitOfWork;
         }
 
         public void Add(tb_User obj)
         {
-            userRepository.Add(obj);
+            if (obj == null)
+                throw new ArgumentNullException(nameof(obj), $"{nameof(obj)} is null or empty");
+
+            using (unitOfWork)
+            {
+                userRepository.Add(obj);
+                unitOfWork.Commit();
+            }
+            
         }
 
         public void Delete(tb_User obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                throw new ArgumentNullException(nameof(obj), $"{nameof(obj)} is null or empty");
+
+            using (unitOfWork)
+            {
+                userRepository.Remove(obj);
+            }
         }
 
         public List<tb_User> GetAll()
@@ -58,7 +73,13 @@ namespace EFCore.Services
 
         public void Update(tb_User obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+                throw new ArgumentNullException(nameof(obj), $"{nameof(obj)} is null or empty");
+
+            using (unitOfWork)
+            {
+                userRepository.Update(obj);
+            }
         }
     }
 }
