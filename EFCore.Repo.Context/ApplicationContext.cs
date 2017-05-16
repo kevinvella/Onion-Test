@@ -20,5 +20,7 @@ namespace EFCore.Repo.Context
         DbSet<tb_Item> tb_Item { get; set; }
         DbSet<tb_Type> tb_Type { get; set; }
 
+        DbSet<tb_File> tb_File { get; set; }
+        DbSet<tb_FileType> tb_FileType { get; set; }
     }
 }
