@@ -22,3 +22,4 @@ EFCore.Web.Client/src/dist/
 packages/
 EFCore.Repo.UnitOfWork/obj/
 EFCore.Repo.UnitOfWork/bin/
+EFCore.Web.Client/wwwroot/dist/

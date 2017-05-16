@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -23,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +68,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="global.json" />
+    <Content Include="package.json" />
+    <Content Include="src\app\app.component.scss" />
+    <Content Include="src\dist\448c34a56d699c29117adc64c43affeb.woff2" />
+    <Content Include="src\dist\e18bbf611f2a2e43afc071aa2f4e1512.ttf" />
+    <Content Include="src\dist\f4769f9bdb7466be65088239c12046d1.eot" />
+    <Content Include="src\dist\fa2772327f55d8198301fdb8bcfc8158.woff" />
+    <Content Include="src\tsconfig.browser.json" />
+    <Content Include="src\tsconfig.server.aot.json" />
+    <Content Include="src\tsconfig.server.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tslint.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -74,16 +88,79 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\components\navmenu\navmenu.component.css" />
+    <Content Include="src\app\components\navmenu\navmenu.component.html" />
+    <Content Include="src\app\components\user-detail\user-detail.component.html" />
+    <Content Include="src\app\containers\chat\chat.component.css" />
+    <Content Include="src\app\containers\chat\chat.component.html" />
+    <Content Include="src\app\containers\counter\counter.component.html" />
+    <Content Include="src\app\containers\home\home.component.html" />
+    <Content Include="src\app\containers\ngx-bootstrap-demo\ngx-bootstrap.component.html" />
+    <Content Include="src\app\containers\users\users.component.css" />
+    <Content Include="src\app\containers\users\users.component.html" />
+    <Content Include="src\dist\0.js" />
+    <Content Include="src\dist\89889688147bd7575d6327160d64e760.svg" />
+    <Content Include="src\dist\main-server.js" />
     <Content Include="Web.config" />
+    <Content Include="webpack.config.js" />
+    <Content Include="webpack\helpers.js" />
+    <Content Include="webpack\webpack.aot.js" />
+    <Content Include="webpack\webpack.client.js" />
+    <Content Include="webpack\webpack.common.js" />
+    <Content Include="webpack\webpack.prod.js" />
+    <Content Include="webpack\webpack.server.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="boot-tests.ts" />
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\browser-app.module.ts" />
+    <TypeScriptCompile Include="src\app\components\navmenu\navmenu.component.ts" />
+    <TypeScriptCompile Include="src\app\components\user-detail\user-detail.component.ts" />
+    <TypeScriptCompile Include="src\app\containers\+lazy\lazy.component.ts" />
+    <TypeScriptCompile Include="src\app\containers\+lazy\lazy.module.ts" />
+    <TypeScriptCompile Include="src\app\containers\chat\chat.component.ts" />
+    <TypeScriptCompile Include="src\app\containers\counter\counter.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\containers\counter\counter.component.ts" />
+    <TypeScriptCompile Include="src\app\containers\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\containers\ngx-bootstrap-demo\ngx-bootstrap.component.ts" />
+    <TypeScriptCompile Include="src\app\containers\users\users.component.ts" />
+    <TypeScriptCompile Include="src\app\models\User.ts" />
+    <TypeScriptCompile Include="src\app\server-app.module.ts" />
+    <TypeScriptCompile Include="src\app\shared\constants\baseurl.constants.ts" />
+    <TypeScriptCompile Include="src\app\shared\constants\request.ts" />
+    <TypeScriptCompile Include="src\app\shared\link.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\route.resolver.ts" />
+    <TypeScriptCompile Include="src\app\shared\user.service.ts" />
+    <TypeScriptCompile Include="src\main.browser.ts" />
+    <TypeScriptCompile Include="src\main.server.aot.ts" />
+    <TypeScriptCompile Include="src\main.server.ts" />
+    <TypeScriptCompile Include="src\modules\transfer-http\transfer-http.module.ts" />
+    <TypeScriptCompile Include="src\modules\transfer-http\transfer-http.ts" />
+    <TypeScriptCompile Include="src\modules\transfer-state\browser-transfer-state.module.ts" />
+    <TypeScriptCompile Include="src\modules\transfer-state\server-transfer-state.module.ts" />
+    <TypeScriptCompile Include="src\modules\transfer-state\server-transfer-state.ts" />
+    <TypeScriptCompile Include="src\modules\transfer-state\transfer-state.ts" />
+    <TypeScriptCompile Include="src\polyfills\browser.polyfills.ts" />
+    <TypeScriptCompile Include="src\polyfills\polyfills.ts" />
+    <TypeScriptCompile Include="src\polyfills\rx-imports.ts" />
+    <TypeScriptCompile Include="src\polyfills\server.polyfills.ts" />
+    <TypeScriptCompile Include="src\polyfills\temporary-aspnetcore-engine.ts" />
+    <TypeScriptCompile Include="src\typings.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
