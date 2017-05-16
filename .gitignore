@@ -23,3 +23,7 @@ packages/
 EFCore.Repo.UnitOfWork/obj/
 EFCore.Repo.UnitOfWork/bin/
 EFCore.Web.Client/wwwroot/dist/
+EFCore.Services.UnitTest/obj/
+EFCore.Services.UnitTest/bin/
+EFCore.Web.UnitTest/obj/
+.vs/
