@@ -5,8 +5,7 @@ using System.Text;
 
 namespace EFCore.Services.Interfaces
 {
-    public interface IUserService : IBaseService<tb_User>
+    public interface IFileService : IBaseService<tb_File>
     {
-        void Add(tb_User user, tb_File userPhoto);
     }
 }

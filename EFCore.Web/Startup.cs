@@ -51,6 +51,9 @@ namespace EFCore.Web
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IItemService, ItemService>();
+
             services.AddTransient<SHA512CryptographyService>();
             services.AddTransient<MD5CryptographyService>();
 

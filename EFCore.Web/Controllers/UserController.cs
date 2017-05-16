@@ -45,7 +45,17 @@ namespace EFCore.Web.Controllers
                 return BadRequest($"User object is null");
 
             user.usr_Guid = Guid.NewGuid();
-            userService.Add(user);
+
+            tb_File photoFile = new tb_File();
+            photoFile.fl_Guid = user.usr_Guid;
+            photoFile.fl_Name = "Test Photo";
+            photoFile.fl_IsPrimary = true;
+            photoFile.fl_Description = "Test Photo";
+            photoFile.fl_ftyp_fk = 1;
+            photoFile.fl_Path = "http://scontent.cdninstagram.com/t51.2885-19/s150x150/14676616_1190167017693926_8193516699786412032_a.jpg";
+
+            
+            userService.Add(user,null);
 
             return Ok();
         }

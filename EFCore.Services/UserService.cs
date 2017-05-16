@@ -13,11 +13,13 @@ namespace EFCore.Services
     public class UserService : IUserService
     {
         private IRepository<tb_User> userRepository;
+        private IRepository<tb_File> fileRepository;
         private IUnitOfWork unitOfWork;
 
-        public UserService(IRepository<tb_User> _userRepo, IUnitOfWork _unitOfWork)
+        public UserService(IRepository<tb_User> _userRepo, IRepository<tb_File> _fileRepo , IUnitOfWork _unitOfWork)
         {
             userRepository = _userRepo;
+            fileRepository = _fileRepo;
             unitOfWork = _unitOfWork;
         }
 
@@ -34,6 +36,28 @@ namespace EFCore.Services
             
         }
 
+        public void Add(tb_User user, tb_File userPhoto)
+        {
+            if (user == null)
+                throw new ArgumentNullException(nameof(user), $"{nameof(user)} is null or empty");
+
+            using (unitOfWork)
+            {
+                try
+                {
+                    userRepository.Add(user);
+                    fileRepository.Add(userPhoto);
+
+                    unitOfWork.Commit();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                
+            }
+        }
+
         public void Delete(tb_User obj)
         {
             if (obj == null)
@@ -42,6 +66,7 @@ namespace EFCore.Services
             using (unitOfWork)
             {
                 userRepository.Remove(obj);
+                unitOfWork.Commit();
             }
         }
 
@@ -79,6 +104,7 @@ namespace EFCore.Services
             using (unitOfWork)
             {
                 userRepository.Update(obj);
+                unitOfWork.Commit();
             }
         }
     }
