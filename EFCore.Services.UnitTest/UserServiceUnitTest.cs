@@ -6,9 +6,6 @@ namespace EFCore.Services.UnitTest
     [TestClass]
     public class UserServiceUnitTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+
     }
 }
