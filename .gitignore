@@ -27,3 +27,4 @@ EFCore.Services.UnitTest/obj/
 EFCore.Services.UnitTest/bin/
 EFCore.Web.UnitTest/obj/
 .vs/
+EFCore.Web.UnitTest/bin/
