@@ -70,6 +70,7 @@ namespace EFCore.Web
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddAzureWebAppDiagnostics();
 
             app.UseStaticFiles();
 

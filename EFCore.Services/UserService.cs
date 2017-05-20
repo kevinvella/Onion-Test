@@ -28,12 +28,21 @@ namespace EFCore.Services
             if (obj == null)
                 throw new ArgumentNullException(nameof(obj), $"{nameof(obj)} is null or empty");
 
-            using (unitOfWork)
+            //Check if the user already exists
+            if (GetSingle(obj.usr_Email) != null)
+                throw new Exception("User already exists");
+
+            Add(obj, new tb_File()
             {
-                userRepository.Add(obj);
-                unitOfWork.Commit();
-            }
-            
+                fl_Guid = obj.usr_Guid,
+                fl_Name = "Test Photo",
+                fl_IsPrimary = true,
+                fl_Description = "Test Photo",
+                fl_ftyp_fk = 1,
+
+                fl_Path = "http://scontent.cdninstagram.com/t51.2885-19/s150x150/14676616_1190167017693926_8193516699786412032_a.jpg"
+            });
+
         }
 
         public void Add(tb_User user, tb_File userPhoto)
@@ -41,20 +50,20 @@ namespace EFCore.Services
             if (user == null)
                 throw new ArgumentNullException(nameof(user), $"{nameof(user)} is null or empty");
 
-            using (unitOfWork)
-            {
-                try
-                {
-                    userRepository.Add(user);
-                    fileRepository.Add(userPhoto);
+            //Check if the user already exists
+            if (GetSingle(user.usr_Email) != null)
+                throw new Exception("User already exists");
 
-                    unitOfWork.Commit();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                
+            try
+            {
+                userRepository.Add(user);
+                fileRepository.Add(userPhoto);
+
+                unitOfWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -63,11 +72,8 @@ namespace EFCore.Services
             if (obj == null)
                 throw new ArgumentNullException(nameof(obj), $"{nameof(obj)} is null or empty");
 
-            using (unitOfWork)
-            {
-                userRepository.Remove(obj);
-                unitOfWork.Commit();
-            }
+            userRepository.Remove(obj);
+            unitOfWork.Commit();
         }
 
         public List<tb_User> GetAll()
@@ -80,7 +86,7 @@ namespace EFCore.Services
             if (name == null || name == string.Empty)
                 throw new ArgumentNullException(nameof(name), $"{nameof(name)} is null or empty");
 
-            return userRepository.GetSingle(x => x.usr_Firstname.Contains(name) || x.usr_LastName.Contains(name));
+            return userRepository.GetSingle(x => x.usr_Email.Contains(name));
         }
 
         public tb_User GetSingle(int pk)
@@ -101,11 +107,8 @@ namespace EFCore.Services
             if (obj == null)
                 throw new ArgumentNullException(nameof(obj), $"{nameof(obj)} is null or empty");
 
-            using (unitOfWork)
-            {
-                userRepository.Update(obj);
-                unitOfWork.Commit();
-            }
+            userRepository.Update(obj);
+            unitOfWork.Commit();
         }
     }
 }

@@ -8,8 +8,4 @@
     <ProjectReference Include="..\EFCore.Data.Models\EFCore.Data.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logger\" />
-  </ItemGroup>
-
 </Project>

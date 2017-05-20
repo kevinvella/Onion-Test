@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EFCore.Services.Interfaces;
 using EFCore.Data.Models;
+using EFCore.Web.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,11 +29,11 @@ namespace EFCore.Web.Controllers
 
             if (result.Count > 0)
             {
-                return Ok(result);
+                return Ok(new Response() { Status = true, Data = result, Message = null });
             }
             else
             {
-                return BadRequest("No users where found");
+                return BadRequest(new Response() { Status = false, Message = "No users where found", Data = null });
             }
 
             
@@ -42,7 +43,7 @@ namespace EFCore.Web.Controllers
         public IActionResult Post([FromBody]tb_User user)
         {
             if (user == null)
-                return BadRequest($"User object is null");
+                return BadRequest(new Response() { Status = false, Message = $"User object is null", Data = null } );
 
             user.usr_Guid = Guid.NewGuid();
 
@@ -52,12 +53,22 @@ namespace EFCore.Web.Controllers
             photoFile.fl_IsPrimary = true;
             photoFile.fl_Description = "Test Photo";
             photoFile.fl_ftyp_fk = 1;
+            
             photoFile.fl_Path = "http://scontent.cdninstagram.com/t51.2885-19/s150x150/14676616_1190167017693926_8193516699786412032_a.jpg";
 
-            
-            userService.Add(user,null);
+            try
+            {
+                userService.Add(user, photoFile);
 
-            return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new Response() { Status = false, Message = ex.Message });
+            }
+            
+            
+
+            return Ok(new Response() { Status = true, Message = "User Added", Data = null });
         }
     }
 }
